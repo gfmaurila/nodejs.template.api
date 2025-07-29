@@ -1,0 +1,104 @@
+# http://127.0.0.1:8081/docs
+
+- pip install uvicorn
+- pip install fastapi
+- pip install pydantic-settings
+- python -m pip install --upgrade pip
+- pip show pydantic
+- pip install pika
+- pip freeze > requirements.txt
+- pip install -r requirements.txt
+- pip install kafka-python
+- pip install pydantic[email]
+- pip install SQLAlchemy
+- pip freeze > requirements.txt
+- pip install asyncpg  # se usar PostgreSQL assíncrono
+- pip install pymysql  # se usar MySQL
+- pip install psycopg2 # se usar PostgreSQL síncrono
+- pip freeze > requirements.txt
+- pip install pyodbc
+- pip install psycopg2-binary==2.9.10
+- pip install psycopg2-binary==2.9.10
+
+
+- pip install -r requirements.txt
+
+- pip freeze > requirements.txt
+
+- uvicorn --version
+
+# uvicorn main:app --reload --port 8081 --app-dir src
+
+
+
+01 - Padrão de projeto - API
+02 - Startando o projeto 
+
+
+
+192.168.1.102
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rodar o projeto
+
+    - > Pressione Ctrl+Shift+P
+    - > Digite Tasks: Run Task
+    - > Selecione Run FastAPI (Uvicorn)
+
+    ou 
+
+    - > Ctrl + Shift + B
+
+
+
+
+
+
+Inicie o debug com F5
+
+    - > Vá no menu "Run and Debug"
+
+    - > Clique em "Start Debugging" (F5)
+
+    - > Selecione o ambiente Python: FastAPI
+
+
+
+
+
+
+GIT
+
+    - git add .
+    - git commit -m "feat(tela-login): implementa tela de login"
+    - git push origin feature/usuarioX-tela-login
+
+
+-- Padrão de mensagens de commit
+
+    - `feat`: nova funcionalidade
+    - `fix`: correção de bug
+    - `docs`: alterações na documentação
+    - `style`: formatação, sem alteração de código
+    - `refactor`: refatoração de código
+    - `test`: adição ou modificação de testes
+    - `chore`: mudanças em tarefas de build ou configuração
