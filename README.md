@@ -1,2 +1,230 @@
-# nodejs.template.api
-nodejs.template.api
+# 📘 Documentação Técnica - API Node.js com CQRS, DDD e Express
+
+## 📖 Visão Geral
+
+Este projeto é um **template de arquitetura Node.js** com os seguintes padrões:
+
+- ✅ DDD (Domain-Driven Design)
+- ✅ CQRS (Command Query Responsibility Segregation)
+- ✅ Arquitetura Vertical Slices
+- ✅ Express.js como framework principal
+- ✅ TypeScript
+- ✅ SQL Server como banco relacional principal
+- ✅ MongoDB, Redis, Kafka e RabbitMQ como integrações opcionais
+- ✅ JWT para autenticação
+- ✅ Log centralizado com MongoDB
+- ✅ Validações, respostas padronizadas e mensagens consistentes
+
+---
+
+## 🏗 Estrutura do Projeto
+
+```bash
+nodejs.template.api/
+└── src/
+    ├── api/
+    │   ├── AuthController.ts
+    │   ├── GithubController.ts
+    │   ├── LogController.ts
+    │   ├── MessageController.ts
+    │   ├── MessagingTestController.ts
+    │   ├── RedisPostController.ts
+    │   └── UserController.ts
+    ├── application/
+    │   ├── Auth/         # Login, Esqueci e Redefinir senha
+    │   ├── Github/       # GitHub Integration
+    │   ├── Log/          # Gerenciamento de logs
+    │   ├── Message/      # CRUD MongoDB
+    │   └── User/         # Usuários com eventos e mensageria
+    ├── core/
+    │   ├── domain/
+    │   ├── env/
+    │   ├── response/     # ApiResult, ExceptionHandler
+    │   ├── security/     # JWT e criptografia
+    │   └── util/
+    ├── domain/
+    │   ├── entities/
+    │   ├── enums/
+    │   ├── interfaces/
+    │   └── valueobjects/
+    ├── infrastructure/
+    │   ├── database/     # Conexão e repositórios SQL
+    │   ├── integration/github/
+    │   ├── logging/
+    │   ├── messaging/User/Pub/
+    │   ├── repositories/
+    │   └── service/
+    ├── worker/
+    │   ├── User/
+    │   └── index.ts
+    └── main.ts
+```
+
+---
+
+## 🚀 Como Executar o Projeto
+
+### 🔧 Local com Node.js
+
+```bash
+npm install
+npm run dev
+```
+
+Acesse:
+- Swagger: http://localhost:3000/api-docs (caso configure com swagger-ui-express)
+
+### 🐳 Com Docker
+
+```bash
+docker-compose up --build
+```
+
+Ou apenas o worker:
+
+```bash
+docker-compose run --rm worker
+```
+
+---
+
+## 📦 Endpoints Disponíveis (Exemplos)
+
+### 🔐 AuthController
+
+| Método | Rota                      | Descrição                  |
+|--------|---------------------------|----------------------------|
+| POST   | /auth/login               | Login com e-mail e senha   |
+| POST   | /auth/forgot-password     | Envia código por e-mail    |
+| POST   | /auth/reset-password      | Redefine senha com código  |
+
+### 👤 UserController
+
+| Método | Rota           | Descrição         |
+|--------|----------------|-------------------|
+| GET    | /users         | Lista usuários    |
+| GET    | /users/{id}    | Busca por ID      |
+| POST   | /users         | Cria usuário      |
+| PUT    | /users/{id}    | Atualiza usuário  |
+| DELETE | /users/{id}    | Remove usuário    |
+
+### 🧪 MessagingTestController
+
+| Método | Rota                    |
+|--------|-------------------------|
+| POST   | /test-messaging/redis   |
+| POST   | /test-messaging/rabbitmq|
+| POST   | /test-messaging/kafka   |
+
+### 📫 RedisPostController
+
+| Método | Rota                     |
+|--------|--------------------------|
+| GET    | /redis-posts             |
+| GET    | /redis-posts/{id}        |
+| POST   | /redis-posts             |
+| PUT    | /redis-posts/{id}        |
+| DELETE | /redis-posts/{id}        |
+
+### 📨 MessageController (MongoDB)
+
+| Método | Rota                 |
+|--------|----------------------|
+| GET    | /messages            |
+| GET    | /messages/{id}       |
+| POST   | /messages            |
+| PUT    | /messages/{id}       |
+| DELETE | /messages/{id}       |
+
+### 🐱 GithubController
+
+| Método | Rota                        | Descrição                      |
+|--------|-----------------------------|--------------------------------|
+| GET    | /github/user                | Perfil GitHub (live)           |
+| GET    | /github/repos               | Repositórios GitHub (live)     |
+| POST   | /github/store/profile       | Armazena perfil no Mongo       |
+| POST   | /github/store/repos         | Armazena repositórios no Mongo |
+| GET    | /github/stored/profile      | Recupera perfil do Mongo       |
+| GET    | /github/stored/repos        | Recupera repositórios do Mongo |
+
+### 📜 LogController
+
+| Método | Rota              | Descrição                         |
+|--------|-------------------|-----------------------------------|
+| GET    | /logs/?limit=100  | Lista logs                        |
+| DELETE | /logs/?older_than=YYYY-MM-DDTHH:mm:ss | Remove logs antigos |
+
+---
+
+## 🧩 Validações e Responses Padronizados
+
+Todas as respostas seguem o formato:
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Mensagem de sucesso",
+  "errors": [],
+  "data": {}
+}
+```
+
+Erros de validação:
+
+```json
+{
+  "success": false,
+  "statusCode": 422,
+  "errors": [
+    { "message": "Campo obrigatório" }
+  ],
+  "data": null
+}
+```
+
+> 📍 Classes: `ApiResult`, `ExceptionHandler` em `core/response`
+
+---
+
+## 📫 Mensageria Assíncrona
+
+### Redis
+
+- Canais: `user-created`, `user-updated`, `user-deleted`
+- Publisher: `RedisPublisher.ts`
+- Subscriber: `RedisSubscriber.ts`
+
+### RabbitMQ
+
+- Fanout exchange
+- Publisher: `RabbitMQPublisher.ts`
+- Subscriber: `RabbitSubscriber.ts`
+- Painel: http://localhost:15672
+
+### Kafka
+
+- Tópico: `user-topic`
+- Publisher: `KafkaPublisher.ts`
+- Subscriber: `KafkaSubscriber.ts`
+- UI opcional: http://localhost:9100
+
+---
+
+## 🧪 Testes via Postman
+
+Importe a coleção:
+
+```
+📁 API - NodeJS.postman_collection.json
+```
+
+Coleções separadas por: Auth, Messaging, MongoDB, Redis, GitHub, Logs e User.
+
+---
+
+## 📫 Como me encontrar
+- [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCjy19AugQHIhyE0Nv558jcQ)
+- [![Linkedin Badge](https://img.shields.io/badge/-Guilherme_Figueiras_Maurila-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/guilherme-maurila)](https://www.linkedin.com/in/guilherme-maurila)
+- [![Gmail Badge](https://img.shields.io/badge/-gfmaurila@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gfmaurila@gmail.com)](mailto:gfmaurila@gmail.com)
+- 📧 Email: gfmaurila@gmail.com
