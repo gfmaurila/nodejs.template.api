@@ -6,7 +6,7 @@
   "main": "dist/main.js",
   "scripts": {
     "start": "node dist/main.js",
-    "start:dev": "nodemon",
+    "start:dev": "nodemon --watch src --ext ts --exec \"node --loader ts-node/esm\" src/main.ts",
     "build": "tsc",
     "debug": "ts-node --inspect-brk src/main.ts",
     "clean": "rimraf dist",
@@ -15,12 +15,8 @@
     "lint:fix": "eslint ./src --ext .ts --fix",
     "format": "prettier --write ./src",
     "test": "vitest",
-
-    
-    
     "infra:up": "docker-compose -f docker-compose.override.yml up -d",
     "infra:down": "docker-compose -f docker-compose.override.yml down",
-
     "test:env": "vitest run src/core/env/__tests__/ConnectionSettings.test.ts",
     "test:live": "vitest run src/core/env/__tests__/ConnectionLive.test.ts"
   },

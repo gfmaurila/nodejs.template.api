@@ -16,6 +16,8 @@
     -> npm install redis mssql amqplib mongodb
     -> npm install --save-dev @types/redis @types/mssql @types/amqplib @types/mongodb
     -> npm install kafkajs
+    -> npm install --save-dev ts-node
+    -> npm install --save-dev ts-node
 
 
 1.1 - Rodando a API
