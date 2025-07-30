@@ -6,12 +6,19 @@
     -> npm install -D typescript ts-node @types/node @types/express nodemon
     -> npx tsc --init
     -> npm install
+    -> npm install --save-dev vitest @types/node
+    -> npm install --save-dev ts-node
+    -> npm install --save-dev vite-tsconfig-paths
     -> npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser
         ->  npm run lint
             npm run lint:fix
             npm run format
+    -> npm install redis mssql amqplib mongodb
+    -> npm install --save-dev @types/redis @types/mssql @types/amqplib @types/mongodb
+    -> npm install kafkajs
 
-1.1 - ROdando a API
+
+1.1 - Rodando a API
 
     ✅ 1. Rodar em modo desenvolvimento (debug)
         -> npm run start:dev
@@ -24,6 +31,9 @@
 
         -> npm start
 
+    ✅ 4. Rodando teste
+
+        -> npm run test:live
     
 
     

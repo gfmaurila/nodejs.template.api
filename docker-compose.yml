@@ -8,9 +8,11 @@ version: "3.9"
 
 services:
 
-  python_template_api:
-    build: .
-    container_name: python_template_api
+  nodejs_template_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodejs_template_api
     restart: always
     ports:
       - "8002:8002"
@@ -27,17 +29,16 @@ services:
       - mongoserver
       - rabbitmq
       - kafka1
-      - oracle
       - oracle-db
+    command: node dist/main.js
     networks:
       - app-backend
 
   worker:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: python_worker
-    command: python src/worker/main.py
+      dockerfile: src/worker/Dockerfile
+    container_name: nodejs_worker
     restart: always
     volumes:
       - .:/app
@@ -52,11 +53,10 @@ services:
       - mongoserver
       - rabbitmq
       - kafka1
-      - oracle
       - oracle-db
+    command: node dist/worker/main.js
     networks:
       - app-backend
-  
 
   sqlserver:
     image: mcr.microsoft.com/azure-sql-edge:latest
