@@ -59,24 +59,19 @@ services:
       - app-backend
 
   sqlserver:
-    image: mcr.microsoft.com/azure-sql-edge:latest
-    cap_add: [ 'SYS_PTRACE' ]
-    hostname: mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
+    hostname: mssql
     restart: always
-    expose:
-      - 1433
     ports:
       - 1433:1433
+    user: "0:0" # ← executa como root para evitar erro de permissão
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=@Poc2Minimal@Api
       - MSSQL_PID=Developer
-      - MSSQL_TCP_PORT=1433
     networks:
       - app-backend
-    volumes:
-      - sql_data:/var/opt/mssql
 
   # -----------------------------------------------------------------------
   # https://hub.docker.com/r/oracleinanutshell/oracle-xe-11g
