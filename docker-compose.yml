@@ -15,7 +15,7 @@ services:
     container_name: nodejs_template_api
     restart: always
     ports:
-      - "8002:8002"
+      - "8002:3000"
     volumes:
       - .:/app
     env_file:
