@@ -1,6 +1,32 @@
 
 1 -> Criar pastas 
     -> ROde create-structure.bat
+    -> npm init -y
+    -> npm install express reflect-metadata dotenv class-transformer class-validator
+    -> npm install -D typescript ts-node @types/node @types/express nodemon
+    -> npx tsc --init
+    -> npm install
+    -> npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser
+        ->  npm run lint
+            npm run lint:fix
+            npm run format
+
+1.1 - ROdando a API
+
+    ✅ 1. Rodar em modo desenvolvimento (debug)
+        -> npm run start:dev
+
+    ✅ 2. Compilar a API (gerar dist/)
+
+        -> npm run build
+
+    ✅ 3. Rodar a API compilada (modo produção)
+
+        -> npm start
+
+    
+
+    
 
 2 -> GIT    
 

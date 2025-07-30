@@ -223,6 +223,37 @@ Coleções separadas por: Auth, Messaging, MongoDB, Redis, GitHub, Logs e User.
 
 ---
 
+
+## 🧰 Padrões de Código e Qualidade
+
+O projeto utiliza **ESLint v9+ com Flat Config** e **Prettier** para manter um código limpo e padronizado.
+
+### 📦 Scripts disponíveis
+
+| Comando             | Descrição                                              |
+|---------------------|--------------------------------------------------------|
+| `npm run lint`      | Analisa o código com ESLint                            |
+| `npm run lint:fix`  | Corrige automaticamente os problemas identificados     |
+| `npm run format`    | Formata os arquivos com Prettier                       |
+
+### 📂 Arquivos de configuração
+
+- `eslint.config.cjs`: Configuração moderna do ESLint com suporte a TypeScript
+- `.prettierrc`: Regras de formatação do Prettier
+- `.vscode/settings.json`: Configuração de editor para formatação automática
+- `.gitignore`, `tsconfig.json`, `nodemon.json`: arquivos auxiliares
+
+### 📦 Dependências instaladas
+
+```bash
+npm install --save-dev \
+  eslint prettier \
+  eslint-config-prettier eslint-plugin-prettier \
+  @typescript-eslint/eslint-plugin @typescript-eslint/parser \
+  typescript-eslint js
+```
+
+
 ## 📫 Como me encontrar
 - [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCjy19AugQHIhyE0Nv558jcQ)
 - [![Linkedin Badge](https://img.shields.io/badge/-Guilherme_Figueiras_Maurila-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/guilherme-maurila)](https://www.linkedin.com/in/guilherme-maurila)
