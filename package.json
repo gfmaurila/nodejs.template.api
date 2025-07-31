@@ -18,7 +18,9 @@
     "infra:up": "docker-compose -f docker-compose.override.yml up -d",
     "infra:down": "docker-compose -f docker-compose.override.yml down",
     "test:env": "vitest run src/core/env/__tests__/ConnectionSettings.test.ts",
-    "test:live": "vitest run src/core/env/__tests__/ConnectionLive.test.ts"
+    "test:live": "vitest run src/core/env/__tests__/ConnectionLive.test.ts",
+    "test:databases": "node ./scripts/test-databases.js",
+    "test:all": "vitest run"
   },
   "keywords": [],
   "author": "Guilherme Maurila",

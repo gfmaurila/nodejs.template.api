@@ -41,17 +41,14 @@
     ✅ 4. Rodando teste
 
         -> npm run test:live
+        -> npx vitest run
 
     ✅ 5. Rodando teste de base 
-
+        -> npx vitest run
+        -> npm run test:databases
         -> npx vitest run src/infrastructure/database/__tests__/SqlServerDatabase.test.ts
         -> npx vitest run src/infrastructure/database/__tests__/OracleDatabase.test.ts
-
-        
-
         -> npx vitest run src/infrastructure/database/__tests__/OracleDatabase.test.ts
-
-
         -> npx vitest run src/infrastructure/database/__tests__/MySqlDatabase.test.ts
     
 

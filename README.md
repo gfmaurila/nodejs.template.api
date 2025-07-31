@@ -62,6 +62,74 @@ nodejs.template.api/
 
 ---
 
+## 🗄 Conexões com Bancos de Dados
+
+O projeto já está configurado para se conectar com os seguintes bancos:
+
+| Banco        | Classe               | Teste                    | Status        |
+|--------------|----------------------|--------------------------|---------------|
+| SQL Server   | `SqlServerDatabase`  | `SqlServerDatabase.test.ts` | ✅ OK |
+| Oracle       | `OracleDatabase`     | `OracleDatabase.test.ts`    | ✅ OK |
+| MySQL        | `MySqlDatabase`      | `MySqlDatabase.test.ts`     | ✅ OK |
+
+### 📂 Localização
+
+```bash
+src/infrastructure/database/
+├── SqlServerDatabase.ts
+├── OracleDatabase.ts
+├── MySqlDatabase.ts
+└── __tests__/
+    ├── SqlServerDatabase.test.ts
+    ├── OracleDatabase.test.ts
+    └── MySqlDatabase.test.ts
+```
+
+### 🔧 Variáveis no `.env.development`
+
+**SQL Server**
+
+```env
+SQLSERVER_HOST=localhost
+SQLSERVER_PORT=1433
+SQLSERVER_DB=your_database
+SQLSERVER_USER=sa
+SQLSERVER_PASSWORD=your_password
+```
+
+**Oracle**
+
+```env
+ORACLE_HOST=localhost
+ORACLE_PORT=1521
+ORACLE_SID=xe
+ORACLE_USER=hr
+ORACLE_PASSWORD=oracle
+ORACLE_LIB_DIR=F:\Work\oracle\instantclient_19_27\instantclient_19_27
+```
+
+**MySQL**
+
+```env
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_DATABASE=your_database
+MYSQL_USER=root
+MYSQL_PASSWORD=your_password
+```
+
+### 🧪 Rodar todos os testes de conexão
+
+```bash
+npx vitest run
+```
+
+Ou adicione um script no `package.json`:
+
+```json
+"test:databases": "npx vitest run"
+```
+
 ## 🚀 Como Executar o Projeto
 
 ### 🔧 Local com Node.js
