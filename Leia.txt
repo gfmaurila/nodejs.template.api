@@ -21,6 +21,8 @@
     -> npm install sequelize sequelize-typescript tedious
     -> npm install --save-dev @types/sequelize
     -> npm install oracledb
+    -> npm install --save-dev @types/sequelize
+    -> npm install mysql2
 
 
 1.1 - Rodando a API
@@ -47,8 +49,10 @@
 
         
 
-        -> npx tsx oracleConnectionTest.ts
         -> npx vitest run src/infrastructure/database/__tests__/OracleDatabase.test.ts
+
+
+        -> npx vitest run src/infrastructure/database/__tests__/MySqlDatabase.test.ts
     
 
     
