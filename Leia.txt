@@ -20,6 +20,7 @@
     -> npm install --save-dev ts-node
     -> npm install sequelize sequelize-typescript tedious
     -> npm install --save-dev @types/sequelize
+    -> npm install oracledb
 
 
 1.1 - Rodando a API
@@ -42,6 +43,12 @@
     ✅ 5. Rodando teste de base 
 
         -> npx vitest run src/infrastructure/database/__tests__/SqlServerDatabase.test.ts
+        -> npx vitest run src/infrastructure/database/__tests__/OracleDatabase.test.ts
+
+        
+
+        -> npx tsx oracleConnectionTest.ts
+        -> npx vitest run src/infrastructure/database/__tests__/OracleDatabase.test.ts
     
 
     
