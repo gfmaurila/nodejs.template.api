@@ -23,6 +23,9 @@
     -> npm install oracledb
     -> npm install --save-dev @types/sequelize
     -> npm install mysql2
+    -> npm install --save sequelize sequelize-typescript tedious
+    -> npm install --save-dev sequelize-cli @types/node
+    -> npm install --save-dev ts-node
 
 
 1.1 - Rodando a API

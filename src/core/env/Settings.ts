@@ -40,6 +40,7 @@ export class Settings {
   static SqlServerDb = process.env.SQLSERVER_DB!;
   static SqlServerUser = process.env.SQLSERVER_USER!;
   static SqlServerPassword = process.env.SQLSERVER_PASSWORD!;
+  static SQLALCHEMY_DATABASE_URL: string = process.env.SQLALCHEMY_DATABASE_URL ?? '';
 
   // Mongo Log
   static MongoLogConn = process.env.MONGO_LOG_CONN!;

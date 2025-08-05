@@ -1,0 +1,23 @@
+1. Liste os arquivos que estão na pasta de migrations
+
+Rode isso no PowerShell:
+
+Get-ChildItem -Path .\src\infrastructure\database\migrations\
+
+
+Isso vai mostrar algo como:
+
+Se não houver nenhum arquivo .cjs lá, então você precisa gerar novamente.
+
+2. Caso precise recriar a migration:
+
+npx sequelize-cli migration:generate --name CreateUserTable
+
+Depois edite o arquivo gerado, mude a extensão para .cjs e cole o conteúdo correto da tabela TB_USER.
+
+
+3. Desfazer qualquer migration que tenha sido marcada como feita:
+
+npx sequelize-cli db:migrate:undo:all
+
+
