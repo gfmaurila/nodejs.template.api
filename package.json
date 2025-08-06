@@ -41,7 +41,8 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.37.7",
     "sequelize-typescript": "^2.1.6",
-    "tedious": "^18.6.1"
+    "tedious": "^18.6.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.7",
@@ -51,6 +52,7 @@
     "@types/node": "^20.19.9",
     "@types/redis": "^4.0.11",
     "@types/sequelize": "^6.12.0",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "eslint": "^9.32.0",
