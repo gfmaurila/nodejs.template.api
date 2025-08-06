@@ -6,7 +6,7 @@ interface UserCreatedDomainEventProps {
   Id: number;
   Name: string;
   Email: string;
-  Phone: string;
+  Phone: string | null; // ajustado aqui
   Notification: ENotificationType;
   Gender: EGender;
 }
@@ -15,7 +15,7 @@ export class UserCreatedDomainEvent extends Event {
   public Id: number;
   public Name: string;
   public Email: string;
-  public Phone: string;
+  public Phone: string | null; // ajustado aqui também
   public Notification: ENotificationType;
   public Gender: EGender;
 
