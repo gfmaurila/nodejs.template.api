@@ -207,3 +207,66 @@ export class UserRepository implements IUserRepository {
     });
   }
 }
+import { Op } from "sequelize";
+import { UserModel } from "@/infrastructure/database/models/UserModel";
+import { UserDto } from "@/application/User/dtos/UserDto";
+import { UserQueryModel } from "@/application/User/dtos/UserQueryModel";
+
+export class UserRepository {
+  async CreateAsync(dto: UserDto): Promise<UserModel> {
+    return await UserModel.create({
+      Name: dto.Name,
+      Email: dto.Email,
+      Senha: dto.Senha,
+      Phone: dto.Phone
+    });
+  }
+
+  async UpdateAsync(id: number, dto: UserDto): Promise<void> {
+    await UserModel.update(
+      { Name: dto.Name, Email: dto.Email, Senha: dto.Senha, Phone: dto.Phone },
+      { where: { Id: id } }
+    );
+  }
+
+  async DeleteAsync(id: number): Promise<void> {
+    await UserModel.destroy({ where: { Id: id } });
+  }
+
+  async GetAllAsync(): Promise<UserQueryModel[]> {
+    const rows = await UserModel.findAll({ order: [["Id", "ASC"]] });
+    return rows.map(this.MapToQuery);
+  }
+
+  async GetByIdAsync(id: number): Promise<UserQueryModel | null> {
+    const row = await UserModel.findOne({ where: { Id: id } });
+    return row ? this.MapToQuery(row) : null;
+  }
+
+  async GetPagedAsync(name?: string, email?: string, page = 1, pageSize = 10) {
+    const where: any = {};
+    if (name) where.Name = { [Op.like]: `%${name}%` };
+    if (email) where.Email = { [Op.like]: `%${email}%` };
+
+    const offset = (page - 1) * pageSize;
+
+    const { rows, count } = await UserModel.findAndCountAll({
+      where,
+      limit: pageSize,
+      offset,
+      order: [["Id", "ASC"]]
+    });
+
+    return { items: rows.map(this.MapToQuery), total: count };
+  }
+
+  private MapToQuery(row: UserModel): UserQueryModel {
+    return {
+      Id: row.Id,
+      Name: row.Name,
+      Email: row.Email,
+      Phone: row.Phone ?? undefined,
+      CreatedAt: row.createdAt
+    };
+  }
+}

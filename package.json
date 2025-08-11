@@ -5,12 +5,10 @@
   "description": "API Node.js com DDD, CQRS e padrões baseados em projetos C#",
   "main": "dist/main.js",
   "scripts": {
-
     "start:dev": "nodemon --watch src --ext ts --exec \"ts-node -P tsconfig.ts-node.json -r tsconfig-paths/register src/main.ts\"",
     "debug": "ts-node -P tsconfig.ts-node.json -r tsconfig-paths/register --inspect-brk src/main.ts",
     "build": "tsc && tsc-alias",
     "start": "node dist/main.js",
-    
     "clean": "rimraf dist",
     "dev:watch": "tsc -w",
     "lint": "eslint ./src --ext .ts",
@@ -30,6 +28,7 @@
   "license": "MIT",
   "dependencies": {
     "amqplib": "^0.10.8",
+    "axios": "^1.11.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "dotenv": "^16.6.1",
